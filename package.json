@@ -7,7 +7,7 @@
         "tsc": "tsc",
         "ts-start": "ts-node src/index.ts",
         "start:dev": "nodemon --watch src --ext ts -L --exec npm run ts-start",
-        "test": "jest --runInBand --force-exit --config jest.config.json ./test",
+        "test": "jest --config jest.config.json ./tests",
         "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
         "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts)\"",
         "prepare": "husky install"

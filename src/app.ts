@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(logger);
 
 app.get('/health', (_req: Request, res: Response) => {
-    res.send('OK');
+    res.status(200).send('OK');
 });
 
 export default app; 
