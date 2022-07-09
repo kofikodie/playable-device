@@ -7,7 +7,7 @@
         "tsc": "tsc",
         "ts-start": "ts-node src/index.ts",
         "start:dev": "nodemon --watch src --ext ts -L --exec npm run ts-start",
-        "test": "jest --config jest.config.json ./tests",
+        "test": "jest --runInBand --forceExit --config jest.config.json ./tests",
         "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
         "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts)\"",
         "prepare": "husky install"
@@ -17,7 +17,11 @@
     "license": "ISC",
     "dependencies": {
         "axios": "^0.27.2",
+        "dotenv": "^16.0.1",
         "express": "^4.18.1",
+        "mongodb": "^4.7.0",
+        "mongodb-memory-server": "^8.7.2",
+        "mongoose": "^6.4.4",
         "morgan": "^1.10.0"
     },
     "devDependencies": {
