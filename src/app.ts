@@ -13,16 +13,24 @@ app.get('/health', (_req: Request, res: Response) => {
 });
 
 //create a POST route for /users
-app.post('/create', async (req: Request<unknown, unknown, DeviceInterface, unknown>, res: Response) => {
-    const user = req.body;
-    const deviceController = new DeviceController()
-    const result = await deviceController.create(user)
+app.post(
+    '/create',
+    async (
+        req: Request<unknown, unknown, DeviceInterface, unknown>,
+        res: Response
+    ) => {
+        const user = req.body;
+        const deviceController = new DeviceController();
+        const result = await deviceController.create(user);
 
-    if ('errorCode' in result) {
-        return res.status(result.errorCode).send(result.context);
+        if ('errorCode' in result) {
+            return res.status(result.errorCode).send({
+                message: result.context,
+            });
+        }
+
+        return res.status(201).send(result);
     }
+);
 
-    return res.status(201).send(result);
-})
-
-export default app; 
+export default app;

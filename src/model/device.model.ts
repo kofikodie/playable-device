@@ -1,15 +1,17 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const deviceSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
+const deviceSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        userId: {
+            type: String,
+            required: true,
+        },
     },
-    userId: {
-        type: String,
-        required: true
-    }
-}
-, { timestamps: true });
+    { timestamps: true }
+);
 
-export default  mongoose.model('Device', deviceSchema);
+export default mongoose.model('Device', deviceSchema);

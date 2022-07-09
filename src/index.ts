@@ -1,5 +1,5 @@
 import app from './app';
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 dotenv.config();
 
@@ -11,7 +11,7 @@ dotenv.config();
         app.listen(appPort, () => {
             console.log(`App listening on port ${appPort}`);
         });
-    } catch (err) { 
+    } catch (err) {
         console.error(err);
     }
 })();
