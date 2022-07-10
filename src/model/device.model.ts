@@ -14,4 +14,6 @@ const deviceSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+deviceSchema.index({ userId: 1, name: 1 }, { unique: true });
+
 export default mongoose.model('Device', deviceSchema);

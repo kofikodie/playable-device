@@ -22,3 +22,16 @@ services:
       MONGO_INITDB_DATABASE: ${MONGO_DB_NAME}
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
+
+  redis: 
+    image: redis:5.0
+    restart: unless-stopped
+    tty: true
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      timeout: 5s
+      retries: 10
+    volumes:
+      - redis-data:/data

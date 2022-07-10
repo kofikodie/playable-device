@@ -1,13 +1,23 @@
 db.devices.drop();
 db.devices.insertMany([
     {
-        _id: 1,
+        _id: ObjectId('62cac7f3b6ddd9deb4be79eb'),
         name: 'Iphone X',
-        userId: 'c0b8584c-97e3-4561-b8fc-58797b1f4c6d',
+        userId: '1',
     },
     {
-        _id: 2,
+        _id: ObjectId('63cac7f3b6ddd9deb4be79eb'),
         name: 'Samsung S10',
-        userId: '33fb75d0-7710-4f1f-a5d7-50b73b6b33d2',
+        userId: '1',
+    },
+    {
+        _id: ObjectId('64cac7f3b6ddd9deb4be79eb'),
+        name: 'Xiaomi Mi8',
+        userId: '1',
+    },
+    {
+        _id: ObjectId('65cac7f3b6ddd9deb4be79eb'),
+        name: 'Xiaomi Mi8',
+        userId: '2',
     },
 ]);
