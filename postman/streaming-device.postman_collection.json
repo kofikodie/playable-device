@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "2e2e903f-1917-4a73-a3ad-cadf87c03c14",
+		"name": "Streaming-device",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11119515"
+	},
+	"item": [
+		{
+			"name": "/health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/health",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Iphone 7\",\n    \"userId\": \"c0b8584c-97e3-4561-b8fc-58797b1f4c6d\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/retrieve",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Iphone 8\",\n    \"userId\": \"c0b8584c-97e3-4561-b8fc-58797b1f4c6d\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/retrieve",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"retrieve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://growth-engineering-nodejs-home-assessement-dev.s3.eu-central-1.amazonaws.com/entitlements.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://growth-engineering-nodejs-home-assessement-dev.s3.eu-central-1.amazonaws.com/entitlements.json",
+					"protocol": "https",
+					"host": [
+						"growth-engineering-nodejs-home-assessement-dev",
+						"s3",
+						"eu-central-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"entitlements.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Iphone 8\",\n    \"userId\": \"c0b8584c-97e3-4561-b8fc-58797b1f4c6d\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

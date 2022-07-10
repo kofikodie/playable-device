@@ -36,6 +36,7 @@ To run the tests, you need to:
 ```bash
 docker-compose run --rm app npm test
 ```
+For manual testing, you can use the postman collection in the project root folder postman
 
 ## TODO
 1. Add a new endpoint /update to update the device name
