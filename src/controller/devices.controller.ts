@@ -60,7 +60,6 @@ export class DeviceController {
                 },
             };
         } catch (error) {
-            console.log(error);
             if (error instanceof mongoose.Error) {
                 return {
                     errorCode: 400,
@@ -75,7 +74,9 @@ export class DeviceController {
         }
     }
 
-    async delete(device: DeviceInterface): Promise<SucessRetrieveResult | ErrorResult> {
+    async delete(
+        device: DeviceInterface
+    ): Promise<SucessRetrieveResult | ErrorResult> {
         try {
             const result = await DeviceModel.findOneAndDelete(device);
             if (!result) {

@@ -9,8 +9,7 @@
         "start:dev": "nodemon --watch src --ext ts -L --exec npm run ts-start",
         "test": "jest --runInBand --forceExit --config jest.config.json ./tests",
         "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-        "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts)\"",
-        "prepare": "husky install"
+        "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts)\""
     },
     "keywords": [],
     "author": "",
@@ -33,7 +32,6 @@
         "@typescript-eslint/eslint-plugin": "^5.30.5",
         "@typescript-eslint/parser": "^5.30.5",
         "eslint": "^8.19.0",
-        "husky": "^8.0.0",
         "jest": "^28.1.2",
         "nock": "^13.2.8",
         "nodemon": "^2.0.19",

@@ -22,7 +22,7 @@ export class EntitlementClient {
         });
 
         const result = await apiClient.get<Entitlement[]>('/entitlements.json');
-        //find the user with the given userId
+
         const user = result.data.find(user => user.userId === userId);
         if (!user) {
             return {
