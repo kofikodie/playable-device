@@ -74,4 +74,37 @@ export class DeviceController {
             };
         }
     }
+
+    async delete(device: DeviceInterface): Promise<SucessRetrieveResult | ErrorResult> {
+        try {
+            const result = await DeviceModel.findOneAndDelete(device);
+            if (!result) {
+                return {
+                    errorCode: 404,
+                    context: 'Device not found',
+                };
+            }
+
+            return {
+                message: 'Device deleted successfully',
+                device: {
+                    name: result.name,
+                    userId: result.userId,
+                    id: result._id.toString(),
+                },
+            };
+        } catch (error) {
+            if (error instanceof mongoose.Error) {
+                return {
+                    errorCode: 400,
+                    context: error.message,
+                };
+            }
+
+            return {
+                errorCode: 500,
+                context: 'Error deleting device',
+            };
+        }
+    }
 }

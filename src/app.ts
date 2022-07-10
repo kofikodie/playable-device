@@ -58,7 +58,6 @@ app.post(
         }
 
         const entitlement = new EntitlementClient();
-        console.log('adijfbvhjsdfbvjhsdvf', device.userId);
         const maxDevices = await entitlement.getMaxDevices(device.userId);
         if (typeof maxDevices !== 'number') {
             return res.status(maxDevices.errorCode).send({
@@ -67,7 +66,6 @@ app.post(
         }
 
         const cachedDevice = await redis.get(device.userId);
-        console.log('Retrieved from cache', cachedDevice, device.userId);
         if (cachedDevice !== null) {
             const devices: [{ id: string }] = JSON.parse(cachedDevice);
             const deviceInCache = devices.find(d => d.id === result.device.id);
@@ -82,8 +80,6 @@ app.post(
                 });
             }
 
-            console.log('Device not found in cache', device);
-
             devices.push({
                 id: result.device.id,
             });
@@ -95,7 +91,6 @@ app.post(
             }
 
             await redis.set(device.userId, JSON.stringify(devices));
-            console.log('Added to cache', devices);
 
             return res.status(200).send({
                 message: 'Device retrieved successfully',
@@ -106,7 +101,6 @@ app.post(
             });
         }
 
-        console.log('Caching device for first time', result.device.id);
         await redis.set(
             device.userId,
             JSON.stringify([{ id: result.device.id }])
@@ -124,6 +118,51 @@ app.post(
                 id: result.device.id,
             },
             playingDevices: 1,
+        });
+    }
+);
+
+app.delete(
+    '/delete',
+    async (
+        req: Request<unknown, unknown, DeviceInterface, unknown>,
+        res: Response
+    ) => {
+        const device = req.body;
+        const deviceController = new DeviceController();
+        const result = await deviceController.delete(device);
+
+        if ('errorCode' in result) {
+            return res.status(result.errorCode).send({
+                message: result.context,
+            });
+        }
+
+        const cachedDevice = await redis.get(device.userId);
+        if (cachedDevice !== null) {
+            const devices: [{ id: string }] = JSON.parse(cachedDevice);
+            const deviceInCache = devices.find(d => d.id === result.device.id);
+
+            if (deviceInCache) {
+                devices.splice(devices.indexOf(deviceInCache), 1);
+                await redis.set(device.userId, JSON.stringify(devices));
+            }
+
+            return res.status(200).send({
+                message: 'Device deleted successfully',
+                device: {
+                    id: result.device.id,
+                },
+                playingDevices: devices.length,
+            });
+        }
+
+        return res.status(200).send({
+            message: 'Device deleted successfully',
+            device: {
+                id: result.device.id,
+            },
+            playingDevices: 0,
         });
     }
 );

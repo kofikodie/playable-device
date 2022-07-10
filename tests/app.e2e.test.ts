@@ -266,4 +266,38 @@ describe('E2E tests for the app', () => {
                 message: 'Device not found',
             });
     });
+
+    it('should return valid response DELETE /delete with a device being create with POST /create', () => {
+
+        return request(app)
+            .post('/create')
+            .send({
+                name: 'Blackberry',
+                userId: '5',
+            })
+            .expect(201)
+            .then(() => {
+                return request(app)
+                    .delete('/delete')
+                    .send({
+                        name: 'Blackberry',
+                        userId: '5',
+                    })
+                    .expect(200)
+            });
+
+    });
+
+    it('should return an error response DELETE /delete with a device that does not exist', () => {
+        return request(app)
+            .delete('/delete')
+            .send({
+                name: 'Tecno',
+                userId: '1',
+            })
+            .expect(404)
+            .expect({
+                message: 'Device not found',
+            });
+    });
 });
