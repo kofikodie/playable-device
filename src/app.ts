@@ -130,7 +130,7 @@ app.delete(
     ) => {
         const device = req.body;
         const deviceController = new DeviceController();
-        const result = await deviceController.delete(device);
+        const result = await deviceController.retrieve(device);
 
         if ('errorCode' in result) {
             return res.status(result.errorCode).send({
@@ -149,7 +149,7 @@ app.delete(
             }
 
             return res.status(200).send({
-                message: 'Device deleted successfully',
+                message: 'Unregistered device successfully',
                 device: {
                     id: result.device.id,
                 },
@@ -157,8 +157,8 @@ app.delete(
             });
         }
 
-        return res.status(200).send({
-            message: 'Device deleted successfully',
+        return res.status(400).send({
+            message: 'Device not playing',
             device: {
                 id: result.device.id,
             },

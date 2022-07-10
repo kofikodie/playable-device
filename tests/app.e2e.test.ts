@@ -269,23 +269,20 @@ describe('E2E tests for the app', () => {
 
     it('should return valid response DELETE /delete with a device being create with POST /create', () => {
 
+        //redis set a key with the device id
+        redis.set('2', JSON.stringify([{id: '65cac7f3b6ddd9deb4be79eb'}]));
         return request(app)
-            .post('/create')
+            .delete('/delete')
             .send({
-                name: 'Blackberry',
-                userId: '5',
+                name: 'Xiaomi Mi8',
+                userId: '2',
             })
-            .expect(201)
-            .then(() => {
-                return request(app)
-                    .delete('/delete')
-                    .send({
-                        name: 'Blackberry',
-                        userId: '5',
-                    })
-                    .expect(200)
+            .expect(200)
+            .expect({
+                message: 'Unregistered device successfully',
+                device: { id: '65cac7f3b6ddd9deb4be79eb' },
+                playingDevices: 0
             });
-
     });
 
     it('should return an error response DELETE /delete with a device that does not exist', () => {
