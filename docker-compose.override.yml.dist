@@ -4,3 +4,29 @@ services:
   app:
     ports:
       - "8888:8888"
+  mongo:
+    ports:
+      - "27017:27017"
+  redis:
+    ports:
+      - "6379:6379"
+
+volumes:
+  app-source:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '${PWD}'
+  mongo-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '${PWD}/.docker/mongo/data'
+  redis-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: '${PWD}/.docker/redis/data'
