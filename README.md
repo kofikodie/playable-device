@@ -15,14 +15,23 @@ To get started, you need to:
 
  - Create an env file to store your express port and the redis and mongodb credentials.
     ```bash
-    cp env.dist env
+    cp .env.dist .env
     ```
 
  - Run the following command to build the project:
-```bash
-docker-compose build #run this command to only build the project alternatively you can skip this step and run and build the containers directly:
-docker-compose up -d
-```
+   ```bash
+   docker-compose build 
+   ```
+
+ - Build the dependencies needed for the project:
+   ```bash
+   docker-compose run --rm app npm install
+   ```
+
+ - Run the project:
+   ```bash
+   docker-compose up -d
+   ```
 
 ## Behaviour
 The backend API is built using Express.js and exposed four endpoints:

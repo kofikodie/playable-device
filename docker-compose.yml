@@ -9,7 +9,8 @@ services:
     volumes: 
       - app-source:/usr/src/app
     depends_on:
-      - mysql
+      - redis
+      - mongo
 
   mongo:
     build:
